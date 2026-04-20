@@ -39,9 +39,6 @@ jobs:
       - name: Build the book
         run: jupyter-book build --html
 
-      - name: List build output
-        run: find _build -type f | sort
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
