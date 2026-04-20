@@ -37,7 +37,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Build the book
-        run: jupyter-book build
+        run: jupyter-book build --html
 
       - name: List build output
         run: find _build -type f | sort
