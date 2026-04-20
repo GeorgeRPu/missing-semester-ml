@@ -14,9 +14,8 @@ A JupyterBook-based educational website covering practical ML topics (MLOps, EDA
 
 ```
 .
-├── _config.yml          # JupyterBook site configuration
-├── _toc.yml             # Table of contents (add new pages here)
-├── requirements.txt     # Python dependencies
+├── myst.yml             # JupyterBook 2.x / MyST site configuration + TOC
+├── requirements.txt     # Python dependencies (jupyter-book >= 2.0)
 ├── intro.md             # Homepage / landing page
 ├── _static/
 │   └── custom.css       # Theme overrides (fonts, purple palette)
@@ -28,22 +27,22 @@ A JupyterBook-based educational website covering practical ML topics (MLOps, EDA
 
 ## Development
 
-Install dependencies and build locally:
+Install dependencies and build locally (requires internet to download the book-theme template on first run):
 
 ```bash
 pip install -r requirements.txt
-jupyter-book build .
+jupyter-book build
 # Open _build/html/index.html in a browser
 ```
 
 ## Adding content
 
 1. Create a Markdown (`.md`) or Jupyter notebook (`.ipynb`) file under `modules/`
-2. Register it in `_toc.yml`
+2. Register it in the `project.toc` list in `myst.yml`
 3. Run a local build to verify
 
 ## Conventions
 
-- Keep `_toc.yml` in sync with any new or removed pages — JupyterBook will error on missing files
-- Do not commit `_build/` (it is gitignored by JupyterBook)
-- Notebook execution is set to `"off"` in `_config.yml`; include pre-executed outputs if you want them rendered
+- Keep `myst.yml` TOC in sync with any new or removed pages — MyST will warn on missing files
+- Do not commit `_build/` (add to `.gitignore` if not already ignored)
+- Notebook execution is off by default; include pre-executed cell outputs if you want them rendered

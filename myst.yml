@@ -1,0 +1,10 @@
+version: 1
+project:
+  title: The Missing Semester of Your ML Education
+  github: https://github.com/georgerpu/missing-semester-ml
+  toc:
+    - file: intro.md
+site:
+  template: book-theme
+  options:
+    style: _static/custom.css
