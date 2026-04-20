@@ -6,5 +6,7 @@ project:
     - file: intro.md
 site:
   template: book-theme
+  nav_title: The Missing Semester of Your ML Education
   options:
+    logo_text: The Missing Semester of Your ML Education
     style: _static/custom.css
