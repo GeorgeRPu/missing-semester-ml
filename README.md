@@ -30,7 +30,7 @@ uv run jupyter-book start
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml   # GitHub Pages deployment workflow
-└── modules/             # Course content (not yet created)
+└── modules/             # Lecture content (one Markdown file per lecture)
 ```
 
 ## ✍️ Adding content

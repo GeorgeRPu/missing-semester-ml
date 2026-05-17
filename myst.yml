@@ -4,6 +4,13 @@ project:
   github: https://github.com/georgerpu/missing-semester-ml
   toc:
     - file: intro.md
+    - file: modules/do-you-need-ml.md
+    - file: modules/working-with-data.md
+    - file: modules/experiment-tracking.md
+    - file: modules/debugging-models.md
+    - file: modules/evaluation.md
+    - file: modules/explainability.md
+    - file: modules/mlops.md
 site:
   template: book-theme
   nav_title: The Missing Semester of Your ML Education
