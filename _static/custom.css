@@ -1,205 +1,179 @@
-/* MIT Missing Semester-inspired theme for JupyterBook */
+/* MIT Missing Semester-inspired theme for MyST book-theme.
+   Selectors target the MyST book-theme DOM (myst-* classes + Tailwind).
+   Dark mode is driven by the theme's `.dark` class toggle, NOT
+   prefers-color-scheme (the manual toggle would otherwise be ignored). */
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
 
-/* ── Color palette (matches MIT Missing Semester) ── */
 :root {
-  --ms-purple-dark:   #24008c;
-  --ms-purple:        #54008c;
-  --ms-purple-light:  #f2deff;
-  --ms-purple-tint:   rgba(84, 0, 140, 0.08);
-  --ms-red:           #8c0038;
-  --pst-color-primary: 84, 0, 140;
-  --pst-color-link:   #54008c;
+  --ms-purple-dark: #24008c;
+  --ms-purple:      #54008c;
+  --ms-red:         #8c0038;
+  --ms-dark-bg:     #303030;
+  --ms-dark-fg:     #dddddd;
+  --ms-dark-link:   #66d9ef;
+  --ms-dark-accent: #a6e22e;
 }
 
-/* ── Typography ── */
-body,
-.bd-content p,
-.bd-content li {
+/* ── Base typography ── */
+body {
   font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
   font-size: 14pt;
   line-height: 1.5;
+  color: #000;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.dark body,
+html.dark body {
+  color: var(--ms-dark-fg);
+}
+
+article.content h1,
+article.content h2,
+article.content h3,
+article.content h4,
+article.content h5,
+article.content h6,
+.myst-fm-block-title {
   font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.25;
 }
 
-code, pre, kbd, samp,
-.highlight,
-.highlight pre {
+/* MIT keeps headings small and understated, not the large theme defaults */
+.myst-fm-block-title,
+article.content h1 { font-size: 1.5rem !important; }
+article.content h2 { font-size: 1.1rem !important; }
+article.content h3,
+article.content h4,
+article.content h5,
+article.content h6 { font-size: 1rem !important; }
+
+code, pre, kbd, samp {
   font-family: "Source Code Pro", "Menlo", "DejaVu Sans Mono", monospace !important;
-  font-size: 11pt;
 }
 
-/* ── Top navigation bar — dark purple ── */
-.bd-header {
-  background-color: var(--ms-purple-dark) !important;
-  border-bottom: none !important;
+article.content code,
+article.content pre { font-size: 11pt; }
+
+/* ── Top navigation: solid dark-purple bar (MIT banner) ── */
+.myst-top-nav {
+  background: var(--ms-purple-dark) !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
 }
 
-.bd-header .navbar-brand,
-.bd-header .navbar-brand:hover,
-.bd-header .nav-link,
-.bd-header .nav-link:hover,
-.bd-header button {
-  color: #ffffff !important;
+.dark .myst-top-nav,
+html.dark .myst-top-nav {
+  background: var(--ms-dark-accent) !important;
 }
 
-.bd-header .navbar-brand {
-  font-weight: 700;
-  letter-spacing: 0.01em;
+/* Nav text / icons → white in light mode, near-black on the lime dark bar */
+.myst-top-nav,
+.myst-top-nav a,
+.myst-top-nav span,
+.myst-top-nav button,
+.myst-top-nav svg {
+  color: #fff !important;
 }
 
-/* Icon buttons in navbar */
-.bd-header .btn,
-.bd-header a[class*="icon"] {
-  color: var(--ms-purple-light) !important;
+.dark .myst-top-nav,
+.dark .myst-top-nav a,
+.dark .myst-top-nav span,
+.dark .myst-top-nav button,
+.dark .myst-top-nav svg,
+html.dark .myst-top-nav,
+html.dark .myst-top-nav a,
+html.dark .myst-top-nav span,
+html.dark .myst-top-nav button,
+html.dark .myst-top-nav svg {
+  color: #202020 !important;
 }
 
-.bd-header a[class*="icon"]:hover {
-  color: #ffffff !important;
-  background: transparent !important;
-}
-
-/* ── Sidebar ── */
-.bd-sidebar-primary {
-  border-right: 1px solid #e0d0f0;
-  font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
-  font-size: 13pt;
-}
-
-/* Active sidebar link */
-.bd-sidebar-primary .nav-link.active,
-.bd-sidebar-primary .nav-link.current {
-  color: var(--ms-purple) !important;
-  background-color: var(--ms-purple-tint) !important;
-  border-left: 3px solid var(--ms-purple);
+/* Brand styled like a shell prompt, à la `./missing-semester` */
+.myst-home-link span {
+  font-family: "Source Code Pro", "Menlo", monospace !important;
   font-weight: 600;
+  letter-spacing: 0;
 }
 
-.bd-sidebar-primary .nav-link:hover {
-  color: var(--ms-purple) !important;
-  background-color: var(--ms-purple-tint) !important;
+.myst-theme-button {
+  border-color: currentColor !important;
 }
 
-/* Sidebar caption (module group label) */
-.bd-sidebar-primary .caption-text,
-.bd-sidebar-primary p.caption {
-  color: var(--ms-purple-dark);
-  font-weight: 700;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-/* ── Links ── */
-.bd-content a,
-a {
+/* ── Links: purple, with the signature invert-on-hover highlight ── */
+article.content a,
+.myst-fm-block a {
   color: var(--ms-purple);
   text-decoration: underline;
 }
 
-.bd-content a:hover,
-a:hover {
-  color: #ffffff;
+article.content a:hover,
+.myst-fm-block a:hover {
+  color: #fff;
   background-color: var(--ms-purple);
   text-decoration: none;
 }
 
+.dark article.content a,
+.dark .myst-fm-block a,
+html.dark article.content a,
+html.dark .myst-fm-block a {
+  color: var(--ms-dark-link);
+}
+
+.dark article.content a:hover,
+.dark .myst-fm-block a:hover,
+html.dark article.content a:hover,
+html.dark .myst-fm-block a:hover {
+  color: #000;
+  background-color: var(--ms-dark-link);
+}
+
 /* ── Inline code ── */
-.bd-content code.literal,
-.bd-content p code,
-.bd-content li code {
+article.content :not(pre) > code {
   background-color: rgba(27, 31, 35, 0.05);
   border-radius: 3px;
   padding: 0.1em 0.35em;
   font-size: 0.9em;
 }
 
-/* ── Code blocks ── */
-.bd-content div.highlight {
+.dark article.content :not(pre) > code,
+html.dark article.content :not(pre) > code {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Code blocks: MIT's dashed purple border ── */
+article.content pre {
   border: 1px dashed #c8b0e0;
   border-radius: 4px;
 }
 
 /* ── Blockquotes ── */
-.bd-content blockquote {
-  background-color: var(--ms-purple-tint);
+article.content blockquote {
+  background-color: rgba(84, 0, 140, 0.08);
   border-left: 4px solid var(--ms-purple);
   padding: 0.75em 1em;
   margin: 1.5em 0;
   border-radius: 0 4px 4px 0;
 }
 
-/* ── Admonition/note boxes ── */
-.bd-content .admonition {
-  border-left-color: var(--ms-purple) !important;
-}
-
-.bd-content .admonition .admonition-title {
-  background-color: var(--ms-purple-tint) !important;
-  color: var(--ms-purple-dark) !important;
+.dark article.content blockquote,
+html.dark article.content blockquote {
+  background-color: rgba(166, 226, 46, 0.10);
+  border-left-color: var(--ms-dark-accent);
 }
 
 /* ── Tables ── */
-.bd-content table {
-  font-size: 13pt;
-}
-
-.bd-content table thead tr {
-  background-color: var(--ms-purple-tint);
-}
-
-.bd-content table thead th {
+article.content table thead th {
   color: var(--ms-purple-dark);
   border-bottom: 2px solid var(--ms-purple);
+  background-color: rgba(84, 0, 140, 0.08);
 }
 
-/* ── Previous / Next navigation ── */
-.prev-next-area a {
-  color: var(--ms-purple) !important;
-}
-
-.prev-next-area a:hover {
-  background-color: var(--ms-purple) !important;
-  color: white !important;
-}
-
-/* ── Footer ── */
-footer {
-  font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
-  font-size: 11pt;
-  color: #666;
-}
-
-/* ── Dark mode overrides ── */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --pst-color-link: #c084fc;
-  }
-
-  .bd-header {
-    background-color: #1a0066 !important;
-  }
-
-  .bd-content a,
-  a {
-    color: #c084fc;
-  }
-
-  .bd-content a:hover,
-  a:hover {
-    background-color: #c084fc;
-    color: #000;
-  }
-
-  .bd-content code.literal,
-  .bd-content p code,
-  .bd-content li code {
-    background-color: rgba(255, 255, 255, 0.08);
-  }
+.dark article.content table thead th,
+html.dark article.content table thead th {
+  color: var(--ms-dark-accent);
+  border-bottom-color: var(--ms-dark-accent);
+  background-color: rgba(166, 226, 46, 0.10);
 }
