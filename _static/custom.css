@@ -101,31 +101,54 @@ html.dark .myst-top-nav svg {
   border-color: currentColor !important;
 }
 
-/* ── Links: purple, with the signature invert-on-hover highlight ── */
-article.content a,
-.myst-fm-block a {
+/* ── Links: purple, with the signature invert-on-hover highlight.
+   The prev/next footer cards (.myst-footer-link) are excluded — they
+   are card buttons, not inline prose links, and the full-background
+   invert leaves their hard-coded grey sub-label unreadable. ── */
+article.content a:not(.myst-footer-link),
+.myst-fm-block a:not(.myst-footer-link) {
   color: var(--ms-purple);
   text-decoration: underline;
 }
 
-article.content a:hover,
-.myst-fm-block a:hover {
+article.content a:not(.myst-footer-link):hover,
+.myst-fm-block a:not(.myst-footer-link):hover {
   color: #fff;
   background-color: var(--ms-purple);
   text-decoration: none;
 }
 
-.dark article.content a,
-.dark .myst-fm-block a,
-html.dark article.content a,
-html.dark .myst-fm-block a {
+/* Prev/next footer cards: purple accent on hover, text stays legible */
+article.content a.myst-footer-link:hover {
+  color: var(--ms-purple) !important;
+  border-color: var(--ms-purple) !important;
+  background-color: transparent;
+}
+
+article.content a.myst-footer-link:hover .myst-footer-link-group {
+  color: var(--ms-purple) !important;
+}
+
+.dark article.content a.myst-footer-link:hover,
+html.dark article.content a.myst-footer-link:hover,
+.dark article.content a.myst-footer-link:hover .myst-footer-link-group,
+html.dark article.content a.myst-footer-link:hover .myst-footer-link-group {
+  color: var(--ms-dark-link) !important;
+  border-color: var(--ms-dark-link) !important;
+  background-color: transparent;
+}
+
+.dark article.content a:not(.myst-footer-link),
+.dark .myst-fm-block a:not(.myst-footer-link),
+html.dark article.content a:not(.myst-footer-link),
+html.dark .myst-fm-block a:not(.myst-footer-link) {
   color: var(--ms-dark-link);
 }
 
-.dark article.content a:hover,
-.dark .myst-fm-block a:hover,
-html.dark article.content a:hover,
-html.dark .myst-fm-block a:hover {
+.dark article.content a:not(.myst-footer-link):hover,
+.dark .myst-fm-block a:not(.myst-footer-link):hover,
+html.dark article.content a:not(.myst-footer-link):hover,
+html.dark .myst-fm-block a:not(.myst-footer-link):hover {
   color: #000;
   background-color: var(--ms-dark-link);
 }
